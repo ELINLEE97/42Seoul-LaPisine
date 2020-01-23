@@ -6,11 +6,11 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 17:00:02 by jko               #+#    #+#             */
-/*   Updated: 2020/01/22 17:02:26 by jko              ###   ########.fr       */
+/*   Updated: 2020/01/23 16:48:35 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_print_reverse_alphabet(void);
+#include <unistd.h>
 
 void	ft_print_reverse_alphabet(void)
 {
