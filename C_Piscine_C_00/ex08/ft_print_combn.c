@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 20:12:27 by jko               #+#    #+#             */
-/*   Updated: 2020/01/23 16:27:12 by jko              ###   ########.fr       */
+/*   Updated: 2020/01/24 10:32:10 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	print(int n, int nums[])
 	}
 }
 
-void	comb(int n, int m, int check[], int picked[])
+void	comb(int n, int m, int picked[])
 {
 	int i;
 
@@ -43,16 +43,14 @@ void	comb(int n, int m, int check[], int picked[])
 	}
 	else
 	{
-		i = m;
+		if (m == 0)
+			i = 0;
+		else
+			i = picked[m - 1] + 1;
 		while (i <= 9)
 		{
-			if (check[i] == 0 && (m == 0 || picked[m - 1] < i))
-			{
-				picked[m] = i;
-				check[i] = 1;
-				comb(n, m + 1, check, picked);
-				check[i] = 0;
-			}
+			picked[m] = i;
+			comb(n, m + 1, picked);
 			i++;
 		}
 	}
@@ -60,14 +58,7 @@ void	comb(int n, int m, int check[], int picked[])
 
 void	ft_print_combn(int n)
 {
-	int check[10];
 	int picked[10];
-	int i;
 
-	i = 0;
-	while (i < 10)
-	{
-		check[i++] = 0;
-	}
-	comb(n, 0, check, picked);
+	comb(n, 0, picked);
 }
