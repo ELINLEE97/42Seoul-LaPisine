@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*   ft_strupcase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 12:54:16 by jko               #+#    #+#             */
-/*   Updated: 2020/01/24 15:49:39 by jko              ###   ########.fr       */
+/*   Created: 2020/01/24 16:20:18 by jko               #+#    #+#             */
+/*   Updated: 2020/01/24 16:33:22 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_alpha(char *str)
+char	*ft_strupcase(char *str)
 {
 	int index;
 
 	index = 0;
 	while (str[index] != '\0')
 	{
-		if (str[index] < 'A' || str[index] > 'z')
-			return (0);
+		if (str[index] >= 'a' && str[index] <= 'z')
+			str[index] = str[index] - 32;
 		index++;
 	}
-	return (1);
+	return (str);
 }
