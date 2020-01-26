@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 11:24:53 by jko               #+#    #+#             */
-/*   Updated: 2020/01/26 19:12:53 by jko              ###   ########.fr       */
+/*   Created: 2020/01/26 16:53:09 by jko               #+#    #+#             */
+/*   Updated: 2020/01/26 17:17:59 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+int	ft_strcmp(char *s1, char *s2)
 {
-	unsigned int	i;
-	int				check;
+	int index;
 
-	i = 0;
-	check = 0;
-	while (i < n)
+	index = 0;
+	while (s1[index] != '\0' && s2[index] != '\0')
 	{
-		if (check == 1 || src[i] == '\0')
-		{
-			dest[i] = '\0';
-			check = 1;
-		}
-		else
-			dest[i] = src[i];
-		i++;
+		if (s1[index] > s2[index])
+			return (1);
+		else if (s1[index] < s2[index])
+			return (-1);
+		index++;
 	}
-	return (dest);
+	if (s1[index] == '\0' && s2[index] == '\0')
+		return (0);
+	else if (s1[index] == '\0')
+		return (-1);
+	else
+		return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:38:25 by jko               #+#    #+#             */
-/*   Updated: 2020/01/26 16:25:41 by jko              ###   ########.fr       */
+/*   Updated: 2020/01/26 19:37:09 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ char	get_hex(int n)
 	return (n + 87);
 }
 
-void	print_non_printable(char c)
+void	print_non_printable(unsigned char c)
 {
-	char asci;
+	unsigned char asci;
 
 	write(1, "\\", 1);
 	asci = get_hex(c / 16 % 16);
