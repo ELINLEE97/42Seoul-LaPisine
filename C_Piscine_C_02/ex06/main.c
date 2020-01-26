@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 16:13:23 by jko               #+#    #+#             */
-/*   Updated: 2020/01/26 15:32:29 by jko              ###   ########.fr       */
+/*   Created: 2020/01/24 16:14:35 by jko               #+#    #+#             */
+/*   Updated: 2020/01/24 16:17:34 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_printable(char *str)
-{
-	int index;
+#include <stdio.h>
 
-	index = 0;
-	while (str[index] != '\0')
+int	ft_str_is_printable(char *str);
+
+int main(void)
+{
+	char c;
+
+	for (int i = -2; i < 130; i++)
 	{
-		if (str[index] < 32 || str[index] > 126)
-			return (0);
-		index++;
+		c = i;
+		printf("%d, %c, %d\n", i, c, ft_str_is_printable(&c));
 	}
-	return (1);
+	return (0);
 }

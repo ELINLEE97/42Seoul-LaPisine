@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 16:13:23 by jko               #+#    #+#             */
-/*   Updated: 2020/01/26 15:32:29 by jko              ###   ########.fr       */
+/*   Created: 2020/01/24 13:04:06 by jko               #+#    #+#             */
+/*   Updated: 2020/01/26 15:26:37 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_printable(char *str)
-{
-	int index;
+#include <stdio.h>
+#include <stdlib.h>
 
-	index = 0;
-	while (str[index] != '\0')
-	{
-		if (str[index] < 32 || str[index] > 126)
-			return (0);
-		index++;
-	}
-	return (1);
+int	ft_str_is_alpha(char *str);
+
+int main(void)
+{
+	char arr[6] = {'a', 'b', 'c', 'd', '\0', };
+	printf("abcd, %d\n", ft_str_is_alpha(arr));
+	printf("123a, %d\n", ft_str_is_alpha("123a\0"));
+	printf("123, %d\n", ft_str_is_alpha("123\0"));
+	printf(", %d\n", ft_str_is_alpha("\0"));
+	printf("Aa[, %d\n", ft_str_is_alpha("Aa[\0"));
+	return (0);
 }

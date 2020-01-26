@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:54:16 by jko               #+#    #+#             */
-/*   Updated: 2020/01/24 15:49:39 by jko              ###   ########.fr       */
+/*   Updated: 2020/01/26 15:28:07 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	ft_str_is_alpha(char *str)
 	index = 0;
 	while (str[index] != '\0')
 	{
-		if (str[index] < 'A' || str[index] > 'z')
+		if (!(str[index] >= 'A' && str[index] <= 'Z')
+				&& !(str[index] >= 'a' && str[index] <= 'z'))
 			return (0);
 		index++;
 	}

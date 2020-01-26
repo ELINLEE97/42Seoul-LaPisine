@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 16:13:23 by jko               #+#    #+#             */
-/*   Updated: 2020/01/26 15:32:29 by jko              ###   ########.fr       */
+/*   Created: 2020/01/24 15:53:03 by jko               #+#    #+#             */
+/*   Updated: 2020/01/24 15:55:57 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_printable(char *str)
-{
-	int index;
+#include <stdio.h>
 
-	index = 0;
-	while (str[index] != '\0')
-	{
-		if (str[index] < 32 || str[index] > 126)
-			return (0);
-		index++;
-	}
-	return (1);
+int	ft_str_is_numeric(char *str);
+
+int main(void)
+{
+	printf("123, %d\n", ft_str_is_numeric("123"));
+	printf("abc, %d\n", ft_str_is_numeric("abc"));
+	printf("ab12, %d\n", ft_str_is_numeric("ab12"));
+	printf("#@!, %d\n", ft_str_is_numeric("#@!"));
+	printf(", %d\n", ft_str_is_numeric(""));
+	return (0);
 }

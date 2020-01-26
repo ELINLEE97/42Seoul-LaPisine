@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 16:13:23 by jko               #+#    #+#             */
-/*   Updated: 2020/01/26 15:32:29 by jko              ###   ########.fr       */
+/*   Created: 2020/01/25 11:30:22 by jko               #+#    #+#             */
+/*   Updated: 2020/01/25 12:26:54 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_printable(char *str)
-{
-	int index;
+void	rush(int x, int y);
+void	ft_putchar(char c);
 
-	index = 0;
-	while (str[index] != '\0')
+int		main(void)
+{
+	int index1;
+	int index2;
+
+	index1 = 0;
+	while (index1 < 6)
 	{
-		if (str[index] < 32 || str[index] > 126)
-			return (0);
-		index++;
+		index2 = 0;
+		while (index2 < 7)
+		{
+			rush(index1, index2);
+			ft_putchar('\n');
+			index2++;
+		}
+		ft_putchar('\n');
+		ft_putchar('\n');
+		index1++;
 	}
-	return (1);
+	return (0);
 }

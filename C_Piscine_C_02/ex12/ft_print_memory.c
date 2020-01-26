@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 16:47:15 by jko               #+#    #+#             */
-/*   Updated: 2020/01/25 23:13:43 by jko              ###   ########.fr       */
+/*   Updated: 2020/01/26 14:48:21 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	get_hex(int n)
 	return (char)(n + 87);
 }
 
-void	print_address(void *addr, int size)
+void	print_address(void *addr)
 {
 	char	address[17];
 	int		index;
@@ -27,7 +27,7 @@ void	print_address(void *addr, int size)
 
 	address[16] = ':';
 	index = 15;
-	temp = addr;
+	temp = (long)addr;
 	while (index >= 0)
 	{
 		address[index] = get_hex(temp % 16);
@@ -42,8 +42,9 @@ void	change_non_printable_and_print(void *addr, unsigned int size)
 	char	temp;
 	int		index;
 
+	write(1, " ", 1);
 	index = 0;
-	while (index < size)
+	while (index < (int)size)
 	{
 		temp = *((char *)addr + index);
 		if (temp >= 32 && temp <= 126)
@@ -52,68 +53,53 @@ void	change_non_printable_and_print(void *addr, unsigned int size)
 			write(1, ".", 1);
 		index++;
 	}
+	write(1, "\n", 1);
 }
 
-void	print_contents(void *addr, unsigned int size, int space_size)
+void	print_contents(void *addr, unsigned int size)
 {
-	char	temp_c[5];
+	char	temp_c[3];
 	int		index;
 	long	temp;
 
 	index = 0;
 	temp_c[0] = ' ';
-	while (index < size)
+	while (index < 16)
 	{
-		temp = *((char *)addr + index++);
-		temp_c[1] = get_hex(temp / 16 % 16);
-		temp_c[2] = get_hex(temp % 16);
-		temp = *((char *)addr + index++);
-		temp_c[3] = get_hex(temp / 16 % 16);
-		temp_c[4] = get_hex(temp % 16);
-		write(1, &temp_c, 5);
-	}
-	index = 0;
-	while (index < space_size)
-	{
-		write(1, " ", 1);
-		index++;
+		if (index < (int)size)
+		{
+			temp = *((char *)addr + index);
+			temp_c[1] = get_hex(temp / 16 % 16);
+			temp_c[2] = get_hex(temp % 16);
+		}
+		else
+		{
+			temp_c[1] = ' ';
+			temp_c[2] = ' ';
+		}
+		if (++index % 2 == 1)
+			write(1, &temp_c, 3);
+		else
+			write(1, &temp_c[1], 2);
 	}
 	change_non_printable_and_print(addr, size);
-	write(1, "\n", 1);
 }
 
 void	*ft_print_memory(void *addr, unsigned int size)
 {
 	int temp;
 	int index;
-	
+
 	index = 0;
 	temp = (int)size / 16;
 	while (index < temp)
 	{
-		print_address(addr + (16 * index), 16);
-		print_contents(addr + (16 * index), 16, 1);
+		print_address(addr + (16 * index));
+		print_contents(addr + (16 * index), 16);
 		index++;
 	}
-	temp = 70 % 16;
-	print_address(addr + size - temp, temp);
-	print_contents(addr + size - temp, temp, 5);
+	temp = (int)size % 16;
+	print_address((char *)addr + (int)size - temp);
+	print_contents((char *)addr + (int)size - temp, temp);
 	return (addr);
-}
-
-void main()
-{
-	char str[70];
-	char a = '!';
-	for(int i = 0; i < 70; i++)
-	{
-		str[i] = a++;
-	}
-	
-	ft_print_memory((void *)str, 70);
-
-
-
-	char str2[] = "Bonjour les aminches...c est fou.tout.ce qu on peut faire avec...print_memory....lol.lol. .";
-	ft_print_memory((void *)str2, 92);
 }

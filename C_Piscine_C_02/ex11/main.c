@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 16:13:23 by jko               #+#    #+#             */
-/*   Updated: 2020/01/26 15:32:29 by jko              ###   ########.fr       */
+/*   Created: 2020/01/25 16:22:56 by jko               #+#    #+#             */
+/*   Updated: 2020/01/25 16:33:16 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_printable(char *str)
-{
-	int index;
+#include <stdio.h>
 
-	index = 0;
-	while (str[index] != '\0')
-	{
-		if (str[index] < 32 || str[index] > 126)
-			return (0);
-		index++;
-	}
-	return (1);
+void	ft_putstr_non_printable(char *str);
+
+int	main(void)
+{
+	printf("%s\n", "Coucou\ntu vas bien ?");
+	ft_putstr_non_printable("Coucou\ntu vas bien ?");
+	printf("\n\n");
+	return (0);
 }
