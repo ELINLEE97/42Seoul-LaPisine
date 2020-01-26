@@ -21,5 +21,8 @@ int main()
 	ft_print_memory((void *)str2, 92);
 	ft_print_memory((void *)str2, 91);
 
+	char str3[5] = "abcde";
+	str3[0] = 0x5a;
+	ft_print_memory((void *)str3, 5);
 	return 0;
 }
