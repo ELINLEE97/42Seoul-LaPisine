@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/26 17:23:15 by jko               #+#    #+#             */
-/*   Updated: 2020/01/26 21:55:37 by jko              ###   ########.fr       */
+/*   Created: 2020/01/26 22:10:43 by jko               #+#    #+#             */
+/*   Updated: 2020/01/27 13:06:02 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+char	*ft_strncat(char *dest, char *src, unsigned int nb)
 {
-	unsigned int index;
+	unsigned int i;
+	unsigned int j;
 
-	index = 0;
-	while (index < n && s1[index] != '\0' && s2[index] != '\0')
+	i = 0;
+	while (dest[i] != '\0')
+		i++;
+	j = 0;
+	while (src[j] != '\0' && j < nb)
 	{
-		if (s1[index] > s2[index])
-			return (1);
-		else if (s1[index] < s2[index])
-			return (-1);
-		index++;
+		dest[i + j] = src[j];
+		j++;
 	}
-	if (index == n)
-		return (0);
-	if (s1[index] == '\0' && s2[index] == '\0')
-		return (0);
-	if (s1[index] == '\0')
-		return (-1);
-	return (1);
+	dest[i + j] = '\0';
+	return (dest);
 }
