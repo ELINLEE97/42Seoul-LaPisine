@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/27 13:09:16 by jko               #+#    #+#             */
-/*   Updated: 2020/01/27 18:21:54 by jko              ###   ########.fr       */
+/*   Created: 2020/01/27 17:14:17 by jko               #+#    #+#             */
+/*   Updated: 2020/01/27 17:29:50 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strstr(char *str, char *to_find)
-{
-	int		i;
-	int		j;
-	int		check;
+#include <unistd.h>
 
-	if (to_find[0] == '\0')
-		return (str);
-	i = 0;
-	while (str[i] != '\0')
-	{
-		j = 0;
-		check = 1;
-		while (str[i + j] != '\0' && to_find[j] != '\0')
-		{
-			if (str[i + j] != to_find[j])
-			{
-				check = 0;
-				break ;
-			}
-			j++;
-		}
-		if (check == 1)
-			return (str + i);
-		i++;
-	}
+void	ft_putnbr(int nb);
+
+int		main(void)
+{
+	ft_putnbr(0);
+	write(1, "\n", 1);
+	ft_putnbr(-2);
+	write(1, "\n", 1);
+	ft_putnbr(1);
+	write(1, "\n", 1);
+	ft_putnbr(11);
+	write(1, "\n", 1);
+	ft_putnbr(-11);
+	write(1, "\n", 1);
+	ft_putnbr(123456789);
+	write(1, "\n", 1);
+	ft_putnbr(-123456789);
+	write(1, "\n", 1);
+	ft_putnbr(2147483647);
+	write(1, "\n", 1);
+	ft_putnbr(-2147483648);
+	write(1, "\n", 1);
 	return (0);
 }

@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/27 13:09:16 by jko               #+#    #+#             */
-/*   Updated: 2020/01/27 18:21:54 by jko              ###   ########.fr       */
+/*   Created: 2020/01/27 16:55:57 by jko               #+#    #+#             */
+/*   Updated: 2020/01/27 16:56:53 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strstr(char *str, char *to_find)
+int	ft_strlen(char *str)
 {
-	int		i;
-	int		j;
-	int		check;
+	int index;
 
-	if (to_find[0] == '\0')
-		return (str);
-	i = 0;
-	while (str[i] != '\0')
-	{
-		j = 0;
-		check = 1;
-		while (str[i + j] != '\0' && to_find[j] != '\0')
-		{
-			if (str[i + j] != to_find[j])
-			{
-				check = 0;
-				break ;
-			}
-			j++;
-		}
-		if (check == 1)
-			return (str + i);
-		i++;
-	}
-	return (0);
+	index = 0;
+	while (str[index] != '\0')
+		index++;
+	return (index);
 }

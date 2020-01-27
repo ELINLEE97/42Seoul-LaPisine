@@ -1,40 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/27 13:09:16 by jko               #+#    #+#             */
-/*   Updated: 2020/01/27 18:21:54 by jko              ###   ########.fr       */
+/*   Created: 2020/01/27 17:00:22 by jko               #+#    #+#             */
+/*   Updated: 2020/01/27 17:03:07 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strstr(char *str, char *to_find)
-{
-	int		i;
-	int		j;
-	int		check;
+#include <unistd.h>
 
-	if (to_find[0] == '\0')
-		return (str);
-	i = 0;
-	while (str[i] != '\0')
-	{
-		j = 0;
-		check = 1;
-		while (str[i + j] != '\0' && to_find[j] != '\0')
-		{
-			if (str[i + j] != to_find[j])
-			{
-				check = 0;
-				break ;
-			}
-			j++;
-		}
-		if (check == 1)
-			return (str + i);
-		i++;
-	}
-	return (0);
+void	ft_putchar(char *str)
+{
+	write(1, str, 1);
 }
