@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:30:59 by jko               #+#    #+#             */
-/*   Updated: 2020/01/28 18:15:57 by jko              ###   ########.fr       */
+/*   Updated: 2020/01/28 20:57:02 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		get_length(char *base)
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	char 	temp;
+	char	temp;
 	int		len;
 
 	if (!is_valid(base))

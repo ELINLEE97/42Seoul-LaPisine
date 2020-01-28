@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_recursive_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/27 17:00:10 by jko               #+#    #+#             */
-/*   Updated: 2020/01/28 21:02:14 by jko              ###   ########.fr       */
+/*   Created: 2020/01/28 21:55:44 by jko               #+#    #+#             */
+/*   Updated: 2020/01/28 21:59:23 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putstr(char *str);
-
-int		main(void)
+int	ft_recursive_factorial(int nb)
 {
-	ft_putstr("");
-	ft_putstr("123");
-	ft_putstr("abc");
-	ft_putstr("1234567890\n");
-	ft_putstr("\n\n");
-	ft_putstr("");
-	return (0);
+	if (nb <= 0)
+		return (0);
+	if (nb < 2)
+		return (nb);
+	return (nb * ft_recursive_factorial(nb - 1));
 }

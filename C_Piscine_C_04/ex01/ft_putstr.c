@@ -6,13 +6,20 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 17:00:22 by jko               #+#    #+#             */
-/*   Updated: 2020/01/27 17:03:07 by jko              ###   ########.fr       */
+/*   Updated: 2020/01/28 21:02:17 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar(char *str)
+void	ft_putstr(char *str)
 {
-	write(1, str, 1);
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 10:41:24 by jko               #+#    #+#             */
-/*   Updated: 2020/01/28 17:42:25 by jko              ###   ########.fr       */
+/*   Updated: 2020/01/28 20:56:31 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_atoi(char *str)
 	count = 0;
 	while (check_char(str[index]) < 0)
 	{
-		if (check_char(str[index]) == -1) 
+		if (check_char(str[index]) == -1)
 			count++;
 		index++;
 	}
