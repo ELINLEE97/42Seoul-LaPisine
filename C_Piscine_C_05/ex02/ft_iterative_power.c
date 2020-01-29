@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_iterative_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/28 17:04:07 by jko               #+#    #+#             */
-/*   Updated: 2020/01/29 11:41:30 by jko              ###   ########.fr       */
+/*   Created: 2020/01/29 11:43:51 by jko               #+#    #+#             */
+/*   Updated: 2020/01/29 11:57:11 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-void	ft_putnbr_base(int nbr, char *base);
-
-int		main(void)
+int	ft_iterative_power(int nb, int power)
 {
-	int start = -20;
-	int end = 30;
-	char base[] = "0123456789abcdef";
-	for (int i = start; i < end; i++)
+	int result;
+
+	if (power < 0)
+		return (0);
+	result = 1;
+	while (power > 0)
 	{
-		ft_putnbr_base(i, base);
-		printf("\n");
+		result *= nb;
+		power--;
 	}
-
-
-	int i1 = -2147483648;
-	char base1[] = "0123456789";
-	ft_putnbr_base(i1, base1);
-	printf("\n");
-
-	return (0);
+	return (result);
 }

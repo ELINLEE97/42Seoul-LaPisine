@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:30:59 by jko               #+#    #+#             */
-/*   Updated: 2020/01/28 20:57:02 by jko              ###   ########.fr       */
+/*   Updated: 2020/01/29 11:41:36 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_putnbr_base(int nbr, char *base)
 		return ;
 	}
 	write(1, "-", 1);
-	temp = base[nbr * (-1) % len];
+	temp = base[nbr % len * (-1)];
 	if (nbr / len * (-1) > 0)
 		recursive_print_number(nbr / len * (-1), base, len);
 	write(1, &temp, 1);
