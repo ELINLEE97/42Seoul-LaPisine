@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 12:47:56 by jko               #+#    #+#             */
-/*   Updated: 2020/01/29 21:11:08 by jko              ###   ########.fr       */
+/*   Created: 2020/01/29 18:02:03 by jko               #+#    #+#             */
+/*   Updated: 2020/01/29 18:17:25 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	is_prime(int n)
-{
-	int i;
-	int temp;
+#include <stdlib.h>
 
-	if (n < 2)
-		return (0);
-	i = 2;
-	temp = n / 2;
-	while (i <= temp && i <= 65536)
+char	*ft_strdup(char *src)
+{
+	char	*result;
+	int		i;
+
+	i = 0;
+	while (src[i])
+		i++;
+	result = (char *)malloc(sizeof(char) * i);
+	i = 0;
+	while (src[i])
 	{
-		if (n % i == 0)
-			return (0);
+		result[i] = src[i];
 		i++;
 	}
-	return (1);
-}
-
-int	ft_find_next_prime(int nb)
-{
-	while (is_prime(nb) == 0)
-		nb++;
-	return (nb);
+	result[i] = '\0';
+	return (result);
 }

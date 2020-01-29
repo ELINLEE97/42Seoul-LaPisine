@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 12:47:56 by jko               #+#    #+#             */
-/*   Updated: 2020/01/29 21:11:08 by jko              ###   ########.fr       */
+/*   Created: 2020/01/29 18:18:15 by jko               #+#    #+#             */
+/*   Updated: 2020/01/29 18:26:41 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	is_prime(int n)
+#include <stdlib.h>
+
+int	*ft_range(int min, int max)
 {
 	int i;
-	int temp;
+	int *result;
 
-	if (n < 2)
-		return (0);
-	i = 2;
-	temp = n / 2;
-	while (i <= temp && i <= 65536)
+	result = (int *)malloc(sizeof(int) * (max - min));
+	i = 0;
+	while (min < max)
 	{
-		if (n % i == 0)
-			return (0);
+		result[i] = min + i;
 		i++;
 	}
-	return (1);
-}
-
-int	ft_find_next_prime(int nb)
-{
-	while (is_prime(nb) == 0)
-		nb++;
-	return (nb);
+	return (result);
 }
