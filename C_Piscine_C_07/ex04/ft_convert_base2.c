@@ -1,30 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_range.c                                         :+:      :+:    :+:   */
+/*   ft_convert_base2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 18:18:15 by jko               #+#    #+#             */
-/*   Updated: 2020/01/29 21:31:49 by jko              ###   ########.fr       */
+/*   Created: 2020/01/30 15:33:07 by jko               #+#    #+#             */
+/*   Updated: 2020/01/30 18:33:38 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-int	*ft_range(int min, int max)
+int		get_base_number(char c, char *base)
 {
 	int i;
-	int *result;
 
-	if (min >= max)
-		return (0);
-	result = (int *)malloc(sizeof(int) * (max - min));
 	i = 0;
-	while (min + i < max)
+	while (base[i])
 	{
-		result[i] = min + i;
+		if (base[i] == c)
+			return (i);
 		i++;
 	}
-	return (result);
+	return (-1);
+}
+
+void	compact(char *arr, int interval)
+{
+	int i;
+
+	i = 0;
+	if (arr[0] == '-')
+	{
+		i++;
+		interval--;
+	}
+	while (i + interval < 34)
+	{
+		arr[i] = arr[i + interval];
+		i++;
+	}
+	arr[i] = '\0';
 }
