@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 12:11:05 by jko               #+#    #+#             */
-/*   Updated: 2020/02/01 16:07:01 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/01 16:50:09 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,12 @@ int		main(int argc, char *argv[])
 		print_str("Error");
 		return (0);
 	}
-
 	inputs = split_inputs(argv[1]);
 	if (inputs == 0)
 	{
 		print_str("Error");
 		return (0);
 	}
-
 	result = solve(inputs);
 	if (result == 0)
 		print_str("Error");

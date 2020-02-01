@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 13:01:15 by jko               #+#    #+#             */
-/*   Updated: 2020/02/01 16:06:58 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/01 17:55:57 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	print_ints(int **ints);
 int		**malloc_arrs(void);
 void	free_arrs(int **arrs);
 char	init_arr(int *arr, int size);
+int		is_valid(int **board, int **inputs);
+void	dfs(int row, int col, int **board, int **inputs);
 
 char	g_is_end = 0;
 
@@ -33,13 +35,6 @@ int		check_row(int row, int **board)
 		if (used[board[row][j]])
 			return (0);
 		used[board[row][j]]++;
-		j++;
-	}
-	j = 1;
-	while (j < 5)
-	{
-		if (used[j] != 1 && used[j] != 0)
-			return (0);
 		j++;
 	}
 	return (1);
@@ -61,115 +56,23 @@ int		check_col(int col, int **board)
 		used[board[j][col]]++;
 		j++;
 	}
-	j = 1;
-	while (j < 5)
-	{
-		if (used[j] != 1 && used[j] != 0)
-			return (0);
-		j++;
-	}
 	return (1);
 }
 
-int		is_valid(int **board, int **inputs)
+void	next_dfs(int row, int col, int **board, int **inputs)
 {
-	int 	i;
-	int 	j;
-	int 	count;
-	int		temp;
-	int		used[5];
-
-	// check col up
-	i = 0;
-	while (i < 4)
+	col++;
+	if (col >= 4)
 	{
-		temp = board[0][i];
-		count = 1;
-		j = 1;
-		while (j < 4)
-		{
-			if (temp < board[j][i])
-			{
-				count++;
-				temp = board[j][i];
-			}
-			j++;
-		}
-		if (count != inputs[0][i])
-			return (0);
-		i++;
+		col = 0;
+		row++;
 	}
-
-	// check col down
-	i = 0;
-	while (i < 4)
-	{
-		temp = board[3][i];
-		count = 1;
-		j = 2;
-		while (j >= 0)
-		{
-			if (temp < board[j][i])
-			{
-				count++;
-				temp = board[j][i];
-			}
-			j--;
-		}
-		if (count != inputs[1][i])
-			return (0);
-		i++;
-	}
-
-	// check row left
-	i = 0;
-	while (i < 4)
-	{
-		temp = board[i][0];
-		count = 1;
-		j = 1;
-		while (j < 4)
-		{
-			if (temp < board[i][j])
-			{
-				count++;
-				temp = board[i][j];
-			}
-			j++;
-		}
-		if (count != inputs[2][i])
-			return (0);
-		i++;
-	}
-
-	// check row right
-	i = 0;
-	while (i < 4)
-	{
-		temp = board[i][3];
-		count = 1;
-		j = 2;
-		while (j >= 0)
-		{
-			if (temp < board[i][j])
-			{
-				count++;
-				temp = board[i][j];
-			}
-			j--;
-		}
-		if (count != inputs[3][i])
-			return (0);
-		i++;
-	}
-	return (1);
+	dfs(row, col, board, inputs);
 }
 
 void	dfs(int row, int col, int **board, int **inputs)
 {
 	int i;
-	int temp_row;
-	int temp_col;
 
 	if (g_is_end)
 		return ;
@@ -182,26 +85,17 @@ void	dfs(int row, int col, int **board, int **inputs)
 		}
 		return ;
 	}
-	i = 1;
-	while (i <= 4)
+	i = 0;
+	while (++i <= 4)
 	{
 		board[row][col] = i;
 		if (!check_row(row, board) || !check_col(col, board))
 		{
 			board[row][col] = 0;
-			i++;
 			continue;
 		}
-		temp_row = row;
-		temp_col = col + 1;
-		if (temp_col >= 4)
-		{
-			temp_col = 0;
-			temp_row++;
-		}
-		dfs(temp_row, temp_col, board, inputs);
+		next_dfs(row, col, board, inputs);
 		board[row][col] = 0;
-		i++;
 	}
 }
 
