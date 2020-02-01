@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 12:42:35 by jko               #+#    #+#             */
-/*   Updated: 2020/01/30 13:56:00 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/01 21:56:16 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	length = get_length(sep) * (size - 1);
 	i = 0;
 	while (i < size)
-	{
-		length += get_length(strs[i]);
-		i++;
-	}
+		length += get_length(strs[i++]);
 	result = (char *)malloc(sizeof(char) * (length + 1));
 	i = 0;
 	j = 0;
