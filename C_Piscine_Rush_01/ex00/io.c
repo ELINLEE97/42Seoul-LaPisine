@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:44:10 by jko               #+#    #+#             */
-/*   Updated: 2020/02/01 17:15:57 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/02 11:25:58 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ int		**split_inputs(char *inputs)
 	return (0);
 }
 
-void	print_str(char *str)
+void	print_error(char *str)
 {
 	int i;
 
 	i = 0;
 	while (str[i])
 	{
-		write(1, &str[i], 1);
+		write(2, &str[i], 1);
 		i++;
 	}
-	write(1, "\n", 1);
+	write(2, "\n", 1);
 }
 
 void	print_ints(int **ints)
