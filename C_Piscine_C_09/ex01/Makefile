@@ -9,12 +9,12 @@ INCLUDES_DIR = ./includes
 INCLUDES = ft.h
 
 SRCS_DIR = ./srcs
-OBJS = ft_putchar.o \
-	   ft_swap.o \
-	   ft_putstr.o \
-	   ft_strlen.o \
-	   ft_strcmp.o
-SRCS = $(OBJS:.o=.c)
+SRCS = ft_putchar.c \
+	   ft_swap.c \
+	   ft_putstr.c \
+	   ft_strlen.c \
+	   ft_strcmp.c
+OBJS = $(addprefix $(SRCS_DIR)/, $(SRCS:.c=.o))
 
 all : $(TARGET)
 
@@ -26,5 +26,9 @@ fclean :
 
 re : fclean all
 
-$(TARGET) : $(addprefix $(INCLUDES_DIR)/, $(INCLUDES)) $(addprefix $(SRCS_DIR)/, $(OBJS))
+$(TARGET) : $(addprefix $(INCLUDES_DIR)/, $(INCLUDES)) $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
+
+.c.o : 
+	echo $<
+	$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $(<:.c=.o)
