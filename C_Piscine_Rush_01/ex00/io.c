@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:44:10 by jko               #+#    #+#             */
-/*   Updated: 2020/02/02 11:25:58 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/02 18:32:32 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	print_error(char *str)
 	write(2, "\n", 1);
 }
 
-void	print_ints(int **ints)
+void	print_answer(int **ints)
 {
 	int		i;
 	int		j;

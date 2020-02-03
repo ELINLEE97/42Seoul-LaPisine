@@ -6,8 +6,8 @@ char **ft_split(char *str, char *charset);
 int main(void)
 {
 //	char str[500] = "12a34,,aa56a78aa90";
-	char str[500] = "    ";
-	char charset[500] = "  ";
+	char str[500] = "  \t ";
+	char charset[500] = " \t";
 //	char charset[500] = ",";
 	char **result = ft_split(str, charset);
 	printf("%s\n%s\n--------------\n", str, charset);
