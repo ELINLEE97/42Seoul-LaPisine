@@ -5,100 +5,102 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/03 17:23:38 by jko               #+#    #+#             */
-/*   Updated: 2020/02/04 14:27:49 by jko              ###   ########.fr       */
+/*   Created: 2020/02/04 21:32:40 by jko               #+#    #+#             */
+/*   Updated: 2020/02/04 22:59:39 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-char	*str_cpy(char *str)
-{
-	char	*copy_str;
-	int		len;
-	int		i;
-
-	len = 0;
-	while (str[len])
-		len++;
-	if (len == 0)
-		return (0);
-	copy_str = (char *)malloc(sizeof(char) * (len + 1));
-	if (copy_str == 0)
-		return (0);
-	copy_str[len] = 0;
-	i = 0;
-	while (str[i])
-	{
-		copy_str[i] = str[i];
-		i++;
-	}
-	copy_str[i] = 0;
-	return (copy_str);
-}
-
-int		replace_and_count(char *str, char *charset)
+char			is_charset(char c, char *charset)
 {
 	int i;
-	int j;
-	int	count;
+
+	i = 0;
+	while (charset[i])
+	{
+		if (charset[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+unsigned int	count_words(char *str, char *charset)
+{
+	int i;
+	int count;
 
 	count = 0;
 	i = 0;
+	if (str[i] && !is_charset(str[i++], charset))
+		count++;
 	while (str[i])
 	{
-		j = 0;
-		while (charset[j])
-		{
-			if (str[i] == charset[j])
-			{
-				str[i] = 0;
-				if (i > 0 && str[i - 1] != 0)
-					count++;
-				break ;
-			}
-			j++;
-		}
+		if (is_charset(str[i], charset) && str[i + 1]
+				&& !is_charset(str[i + 1], charset))
+			count++;
 		i++;
 	}
-	if (i > 0 && str[i - 1] == 0)
-		return (count);
-	return (count + 1);
+	return (count);
 }
 
-char	**make_result(char *str, int size, char **dest)
+char			*str_n_cpy(char *str, unsigned int n)
+{
+	unsigned int	i;
+	char			*result;
+
+	result = (char *)malloc(sizeof(char) * (n + 1));
+	result[n] = 0;
+	i = 0;
+	while (i < n)
+	{
+		result[i] = str[i];
+		i++;
+	}
+	return (result);
+}
+
+void			fill_strs(char *str, char *charset, char **result)
 {
 	int i;
 	int j;
+	int count;
 
 	i = 0;
 	j = 0;
-	while (str[i] || j < size)
+	count = 0;
+	if (str[i] && !is_charset(str[i], charset))
+		j = i++;
+	while (str[i])
 	{
-		if (str[i] && (i == 0 || str[i - 1] == 0))
+		if (is_charset(str[i], charset))
 		{
-			dest[j] = str + i;
-			j++;
+			if (j < i)
+				result[count++] = str_n_cpy(str + j, i - j);
+			j = i + 1;
 		}
 		i++;
 	}
-	dest[j] = 0;
-	return (dest);
+	if (j < i)
+		result[count] = str_n_cpy(str + j, i - j);
 }
 
-char	**ft_split(char *str, char *charset)
+char			**ft_split(char *str, char *charset)
 {
-	char	**result;
-	char	*copy_str;
-	int		size;
+	unsigned int	count;
+	char			**result;
 
-	copy_str = str_cpy(str);
-	if (copy_str == 0)
-		return (0);
-	size = replace_and_count(copy_str, charset);
-	result = (char **)malloc(sizeof(char *) * (size + 1));
-	if (result == 0)
-		return (0);
-	result[size] = 0;
-	return (make_result(copy_str, size, result));
+	if (!charset[0])
+	{
+		result = (char **)malloc(sizeof(char *) * 2);
+		result[0] = str;
+		result[1] = 0;
+		return (result);
+	}
+	count = count_words(str, charset);
+	result = (char **)malloc(sizeof(char *) * (count + 1));
+	result[count] = 0;
+	fill_strs(str, charset, result);
+	return (result);
 }
