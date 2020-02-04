@@ -6,27 +6,27 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 13:01:15 by jko               #+#    #+#             */
-/*   Updated: 2020/02/02 18:53:38 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/04 17:55:22 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	print_answer(int **ints);
-int		**malloc_arrs(void);
-void	free_arrs(int **arrs);
+void	print_answer(int **ints, int n);
+int		**malloc_arrs(int n);
+void	free_arrs(int **arrs, int n);
 char	init_arr(int *arr, int size);
-int		is_valid(int **board, int **inputs);
-void	dfs(int row, int col, int **board, int **inputs);
+int		is_valid(int **board, int **inputs, int n);
+void	dfs(int row, int col, int **board, int **inputs, int n);
 
 char	g_is_end = 0;
 
-int		check_row(int row, int **board)
+int		check_row(int row, int **board, int n)
 {
-	int used[5];
+	int used[10];
 	int i;
 
-	init_arr(used, 5);
+	init_arr(used, n);
 	i = 0;
-	while (i < 4)
+	while (i < n)
 	{
 		if (!board[row][i])
 			return (1);
@@ -38,14 +38,14 @@ int		check_row(int row, int **board)
 	return (1);
 }
 
-int		check_col(int col, int **board)
+int		check_col(int col, int **board, int n)
 {
-	int used[5];
+	int used[10];
 	int i;
 
-	init_arr(used, 5);
+	init_arr(used, n);
 	i = 0;
-	while (i < 4)
+	while (i < n)
 	{
 		if (!board[i][col])
 			return (1);
@@ -57,58 +57,58 @@ int		check_col(int col, int **board)
 	return (1);
 }
 
-int		check_return(int row, int col, int **board, int **inputs)
+int		check_return(int row, int col, int **board, int **inputs, int n)
 {
 	if (g_is_end)
 		return (1);
-	if (row == 4 && col == 0)
+	if (row == n && col == 0)
 	{
-		if (is_valid(board, inputs))
+		if (is_valid(board, inputs, n))
 		{
 			g_is_end = 1;
-			print_answer(board);
+			print_answer(board, n);
 		}
 		return (1);
 	}
 	return (0);
 }
 
-void	dfs(int row, int col, int **board, int **inputs)
+void	dfs(int row, int col, int **board, int **inputs, int n)
 {
 	int i;
 
-	if (check_return(row, col, board, inputs))
+	if (check_return(row, col, board, inputs, n))
 		return ;
 	i = 1;
-	while (i <= 4)
+	while (i <= n)
 	{
 		board[row][col] = i;
-		if (check_row(row, board) && check_col(col, board))
+		if (check_row(row, board, n) && check_col(col, board, n))
 		{
-			if (col == 3)
-				dfs(row + 1, 0, board, inputs);
+			if (col == n - 1)
+				dfs(row + 1, 0, board, inputs, n);
 			else
-				dfs(row, col + 1, board, inputs);
+				dfs(row, col + 1, board, inputs, n);
 		}
 		board[row][col] = 0;
 		i++;
 	}
 }
 
-int		solve(int **inputs)
+int		solve(int **inputs, int n)
 {
 	int **board;
 	int	i;
 
 	g_is_end = 0;
-	board = malloc_arrs();
+	board = malloc_arrs(n);
 	i = 0;
-	while (i < 4)
+	while (i < n)
 	{
-		init_arr(board[i], 4);
+		init_arr(board[i], n);
 		i++;
 	}
-	dfs(0, 0, board, inputs);
-	free_arrs(board);
+	dfs(0, 0, board, inputs, n);
+	free_arrs(board, n);
 	return (g_is_end);
 }

@@ -6,29 +6,31 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:44:10 by jko               #+#    #+#             */
-/*   Updated: 2020/02/02 18:32:32 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/04 17:55:17 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int		**malloc_arrs(void);
-void	free_arrs(int **arrs);
+int		**malloc_arrs(int n);
+void	free_arrs(int **arrs, int n);
 
-int		**split_inputs(char *inputs)
+int		**split_inputs(char *inputs, int n)
 {
 	int		**result;
 	int		i;
 	int		count;
+	int		temp;
 
-	result = malloc_arrs();
+	result = malloc_arrs(n);
 	i = 0;
 	count = 0;
+	temp = n + '0';
 	while (inputs[i])
 	{
-		if (inputs[i] >= '1' && inputs[i] <= '4')
+		if (inputs[i] >= '1' && inputs[i] <= temp)
 		{
-			result[count / 4][count % 4] = inputs[i] - '0';
+			result[count / n][count % n] = inputs[i] - '0';
 			i++;
 			count++;
 		}
@@ -37,9 +39,9 @@ int		**split_inputs(char *inputs)
 		else
 			break ;
 	}
-	if (count == 16)
+	if (count == n * n)
 		return (result);
-	free_arrs(result);
+	free_arrs(result, n);
 	return (0);
 }
 
@@ -56,7 +58,7 @@ void	print_error(char *str)
 	write(2, "\n", 1);
 }
 
-void	print_answer(int **ints)
+void	print_answer(int **ints, int n)
 {
 	int		i;
 	int		j;
@@ -64,12 +66,12 @@ void	print_answer(int **ints)
 
 	temp[0] = ' ';
 	i = 0;
-	while (i < 4)
+	while (i < n)
 	{
 		temp[1] = ints[i][0] + '0';
 		write(1, &temp[1], 1);
 		j = 1;
-		while (j < 4)
+		while (j < n)
 		{
 			temp[1] = ints[i][j] + '0';
 			write(1, &temp, 2);

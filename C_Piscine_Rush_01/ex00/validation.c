@@ -6,11 +6,11 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 17:17:45 by jko               #+#    #+#             */
-/*   Updated: 2020/02/02 18:31:12 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/04 17:55:20 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		is_valid_up(int col, int **board, int **inputs)
+int		is_valid_up(int col, int **board, int **inputs, int n)
 {
 	int		i;
 	int		count;
@@ -19,7 +19,7 @@ int		is_valid_up(int col, int **board, int **inputs)
 	temp = board[0][col];
 	count = 1;
 	i = 1;
-	while (i < 4)
+	while (i < n)
 	{
 		if (temp < board[i][col])
 		{
@@ -33,15 +33,15 @@ int		is_valid_up(int col, int **board, int **inputs)
 	return (1);
 }
 
-int		is_valid_down(int col, int **board, int **inputs)
+int		is_valid_down(int col, int **board, int **inputs, int n)
 {
 	int		i;
 	int		count;
 	int		temp;
 
-	temp = board[3][col];
+	temp = board[n - 1][col];
 	count = 1;
-	i = 2;
+	i = n - 2;
 	while (i >= 0)
 	{
 		if (temp < board[i][col])
@@ -56,7 +56,7 @@ int		is_valid_down(int col, int **board, int **inputs)
 	return (1);
 }
 
-int		is_valid_left(int row, int **board, int **inputs)
+int		is_valid_left(int row, int **board, int **inputs, int n)
 {
 	int		i;
 	int		count;
@@ -65,7 +65,7 @@ int		is_valid_left(int row, int **board, int **inputs)
 	temp = board[row][0];
 	count = 1;
 	i = 1;
-	while (i < 4)
+	while (i < n)
 	{
 		if (temp < board[row][i])
 		{
@@ -79,15 +79,15 @@ int		is_valid_left(int row, int **board, int **inputs)
 	return (1);
 }
 
-int		is_valid_right(int row, int **board, int **inputs)
+int		is_valid_right(int row, int **board, int **inputs, int n)
 {
 	int		i;
 	int		count;
 	int		temp;
 
-	temp = board[row][3];
+	temp = board[row][n - 1];
 	count = 1;
-	i = 2;
+	i = n - 2;
 	while (i >= 0)
 	{
 		if (temp < board[row][i])
@@ -102,17 +102,17 @@ int		is_valid_right(int row, int **board, int **inputs)
 	return (1);
 }
 
-int		is_valid(int **board, int **inputs)
+int		is_valid(int **board, int **inputs, int n)
 {
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < n)
 	{
-		if (!is_valid_up(i, board, inputs)
-				|| !is_valid_down(i, board, inputs)
-				|| !is_valid_left(i, board, inputs)
-				|| !is_valid_right(i, board, inputs))
+		if (!is_valid_up(i, board, inputs, n)
+				|| !is_valid_down(i, board, inputs, n)
+				|| !is_valid_left(i, board, inputs, n)
+				|| !is_valid_right(i, board, inputs, n))
 			return (0);
 		i++;
 	}

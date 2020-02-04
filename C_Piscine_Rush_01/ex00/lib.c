@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 12:13:22 by jko               #+#    #+#             */
-/*   Updated: 2020/02/02 17:50:37 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/04 17:55:18 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,24 @@ void	init_arr(int *arr, int size)
 	}
 }
 
-int		**malloc_arrs(void)
+int		**malloc_arrs(int n)
 {
 	int		i;
 	int		**result;
 
-	result = (int **)malloc(sizeof(int *) * 4);
+	result = (int **)malloc(sizeof(int *) * n);
 	i = 0;
-	while (i < 4)
-		result[i++] = (int *)malloc(sizeof(int) * 4);
+	while (i < n)
+		result[i++] = (int *)malloc(sizeof(int) * n);
 	return (result);
 }
 
-void	free_arrs(int **arrs)
+void	free_arrs(int **arrs, int n)
 {
 	int i;
 
 	i = 0;
-	while (i < 4)
+	while (i < n)
 	{
 		free(arrs[i]);
 		i++;
