@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 17:23:38 by jko               #+#    #+#             */
-/*   Updated: 2020/02/03 22:10:39 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/04 14:27:49 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ char	*str_cpy(char *str)
 	len = 0;
 	while (str[len])
 		len++;
+	if (len == 0)
+		return (0);
 	copy_str = (char *)malloc(sizeof(char) * (len + 1));
 	if (copy_str == 0)
 		return (0);
+	copy_str[len] = 0;
 	i = 0;
 	while (str[i])
 	{
@@ -72,7 +75,7 @@ char	**make_result(char *str, int size, char **dest)
 	j = 0;
 	while (str[i] || j < size)
 	{
-		if ((i == 0 && str[i]) || (str[i] && str[i - 1] == 0))
+		if (str[i] && (i == 0 || str[i - 1] == 0))
 		{
 			dest[j] = str + i;
 			j++;
@@ -96,5 +99,6 @@ char	**ft_split(char *str, char *charset)
 	result = (char **)malloc(sizeof(char *) * (size + 1));
 	if (result == 0)
 		return (0);
+	result[size] = 0;
 	return (make_result(copy_str, size, result));
 }

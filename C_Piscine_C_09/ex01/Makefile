@@ -30,5 +30,4 @@ $(TARGET) : $(addprefix $(INCLUDES_DIR)/, $(INCLUDES)) $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 
 .c.o : 
-	echo $<
 	$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $(<:.c=.o)
