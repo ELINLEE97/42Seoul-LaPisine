@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 21:32:40 by jko               #+#    #+#             */
-/*   Updated: 2020/02/04 22:59:39 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/05 11:54:04 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ unsigned int	count_words(char *str, char *charset)
 
 	count = 0;
 	i = 0;
-	if (str[i] && !is_charset(str[i++], charset))
+	if (str[i] && !is_charset(str[i], charset))
+	{
+		i++;
 		count++;
+	}
 	while (str[i])
 	{
 		if (is_charset(str[i], charset) && str[i + 1]
@@ -68,7 +71,7 @@ void			fill_strs(char *str, char *charset, char **result)
 	int count;
 
 	i = 0;
-	j = 0;
+	j = 1;
 	count = 0;
 	if (str[i] && !is_charset(str[i], charset))
 		j = i++;

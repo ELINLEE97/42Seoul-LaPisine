@@ -4,10 +4,10 @@ char **ft_split(char *str, char *charset);
 
 int main()
 {
-	char str[500] = "XU07 LEg11AIG62obhz0 HPmB6PhMxGYGGPjiAbs";
-//	char str[500] = "tmiosegjpsgisio43";
+//	char str[500] = "XU07 LEg11AIG62obhz0 HPmB6PhMxGYGGPjiAbsa";
+	char str[500] = "1a234567a89123456789";
 //	char charset[100] = "bR6rDPUz";
-	char charset[100] = "";
+	char charset[100] = "a";
 //	char charset[100] = "seg";
 	char **result = ft_split(str, charset);
 
