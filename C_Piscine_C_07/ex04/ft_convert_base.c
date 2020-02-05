@@ -6,18 +6,18 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 14:30:33 by jko               #+#    #+#             */
-/*   Updated: 2020/02/04 14:27:59 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/05 12:15:51 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-int		get_base_number(char c, char *base);
+int			get_base_number(char c, char *base);
 
-void	compact(char *arr, int interval);
+void		compact(char *arr, int interval);
 
-int		get_length(char *str)
+int			get_length(char *str)
 {
 	int i;
 
@@ -27,7 +27,7 @@ int		get_length(char *str)
 	return (i);
 }
 
-int		is_valid(char *base, int len)
+int			is_valid(char *base, int len)
 {
 	int i;
 	int j;
@@ -52,11 +52,11 @@ int		is_valid(char *base, int len)
 	return (1);
 }
 
-long	base_to_int(char *nbr, char *base)
+long long	base_to_int(char *nbr, char *base)
 {
-	int		count;
-	int		i;
-	long	result;
+	int			count;
+	int			i;
+	long long	result;
 
 	i = 0;
 	while ((nbr[i] >= 9 && nbr[i] <= 13) || nbr[i] == ' ')
@@ -75,7 +75,7 @@ long	base_to_int(char *nbr, char *base)
 	return (result * (-1));
 }
 
-char	*int_to_base(long nbr, char *base, int len)
+char		*int_to_base(long nbr, char *base, int len)
 {
 	char	*result;
 	int		i;
@@ -99,11 +99,11 @@ char	*int_to_base(long nbr, char *base, int len)
 	return (result);
 }
 
-char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
+char		*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	int		len_from;
-	int		len_to;
-	long	temp;
+	int			len_from;
+	int			len_to;
+	long long	temp;
 
 	len_from = get_length(base_from);
 	len_to = get_length(base_to);

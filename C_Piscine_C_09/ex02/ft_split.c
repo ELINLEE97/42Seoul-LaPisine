@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 21:32:40 by jko               #+#    #+#             */
-/*   Updated: 2020/02/05 11:54:04 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/05 14:14:27 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,15 @@ char			**ft_split(char *str, char *charset)
 {
 	unsigned int	count;
 	char			**result;
+	unsigned int	len;
 
 	if (!charset[0])
 	{
 		result = (char **)malloc(sizeof(char *) * 2);
-		result[0] = str;
+		len = 0;
+		while (str[len])
+			len++;
+		result[0] = str_n_cpy(str, len);
 		result[1] = 0;
 		return (result);
 	}

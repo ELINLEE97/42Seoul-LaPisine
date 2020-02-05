@@ -5,107 +5,109 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/30 18:37:28 by jko               #+#    #+#             */
-/*   Updated: 2020/02/02 11:58:08 by jko              ###   ########.fr       */
+/*   Created: 2020/02/04 21:32:40 by jko               #+#    #+#             */
+/*   Updated: 2020/02/05 14:14:27 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
-int		str_cmp(char *s1, char *s2, int n)
+char			is_charset(char c, char *charset)
 {
 	int i;
 
 	i = 0;
-	while (s1[n + i] && s2[i] && s1[n + i] == s2[i])
+	while (charset[i])
+	{
+		if (charset[i] == c)
+			return (1);
 		i++;
-	if (s2[i] == 0)
-		return (1);
+	}
 	return (0);
 }
 
-int		get_count(char *str, char *charset, int len)
+unsigned int	count_words(char *str, char *charset)
 {
 	int i;
 	int count;
 
 	count = 0;
 	i = 0;
-	if (!str_cmp(str, charset, i++))
+	if (str[i] && !is_charset(str[i], charset))
+	{
+		i++;
 		count++;
+	}
 	while (str[i])
 	{
-		if (str_cmp(str, charset, i))
-		{
+		if (is_charset(str[i], charset) && str[i + 1]
+				&& !is_charset(str[i + 1], charset))
 			count++;
-			i += len - 1;
-		}
 		i++;
 	}
 	return (count);
 }
 
-void	str_cpy(int *index, char **result, char *str)
+char			*str_n_cpy(char *str, unsigned int n)
 {
-	int i;
+	unsigned int	i;
+	char			*result;
 
-	result[index[1]] = (char *)malloc(sizeof(char) * (index[3] - index[2] + 1));
+	result = (char *)malloc(sizeof(char) * (n + 1));
+	result[n] = 0;
 	i = 0;
-	while (index[2] + i < index[3])
+	while (i < n)
 	{
-		result[index[1]][i] = str[index[2] + i];
+		result[i] = str[i];
 		i++;
 	}
-	result[index[1]][i] = 0;
-	index[1]++;
+	return (result);
 }
 
-void	init_arr(void *arr, int size, int type)
+void			fill_strs(char *str, char *charset, char **result)
 {
-	char	**temp1;
-	int		*temp2;
-	int		i;
+	int i;
+	int j;
+	int count;
 
 	i = 0;
-	if (type == 0)
+	j = 1;
+	count = 0;
+	if (str[i] && !is_charset(str[i], charset))
+		j = i++;
+	while (str[i])
 	{
-		temp1 = (char **)arr;
-		while (i < size)
-			temp1[i++] = 0;
+		if (is_charset(str[i], charset))
+		{
+			if (j < i)
+				result[count++] = str_n_cpy(str + j, i - j);
+			j = i + 1;
+		}
+		i++;
 	}
-	else
-	{
-		temp2 = (int *)arr;
-		while (i < size)
-			temp2[i++] = 0;
-	}
+	if (j < i)
+		result[count] = str_n_cpy(str + j, i - j);
 }
 
-char	**ft_split(char *str, char *charset)
+char			**ft_split(char *str, char *charset)
 {
-	char	**result;
-	int		index[4];
+	unsigned int	count;
+	char			**result;
+	unsigned int	len;
 
-	index[0] = 0;
-	while (charset[index[0]])
-		index[0]++;
-	index[1] = get_count(str, charset, index[0]);
-	result = (char **)malloc(sizeof(char *) * (index[1] + 1));
-	init_arr(result, index[1] + 1, 0);
-	result[index[1]] = 0;
-	init_arr(index + 1, 3, 1);
-	while (str[index[3]])
-		if (str_cmp(str, charset, index[3]))
-		{
-			if (index[2] < index[3])
-				str_cpy(index, result, str);
-			index[3] += index[0];
-			index[2] = index[3];
-		}
-		else
-			index[3]++;
-	if (index[2] != index[3])
-		str_cpy(index, result, str);
+	if (!charset[0])
+	{
+		result = (char **)malloc(sizeof(char *) * 2);
+		len = 0;
+		while (str[len])
+			len++;
+		result[0] = str_n_cpy(str, len);
+		result[1] = 0;
+		return (result);
+	}
+	count = count_words(str, charset);
+	result = (char **)malloc(sizeof(char *) * (count + 1));
+	result[count] = 0;
+	fill_strs(str, charset, result);
 	return (result);
 }

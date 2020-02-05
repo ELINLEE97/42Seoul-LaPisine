@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 char **ft_split(char *str, char *charset);
-
+/*
 int main()
 {
 //	char str[500] = "XU07 LEg11AIG62obhz0 HPmB6PhMxGYGGPjiAbsa";
@@ -16,14 +16,16 @@ int main()
 	
 	return 0;
 }
+*/
 
-/*
+
 #include <stdio.h>
 int main()
 {
-	char **a = ft_split("                    ", "     ");
+//	char **a = ft_split("                    ", "     ");
 //	char **a = ft_split("gUx8xf1PCzQmiwbsBHuoYw9Mim8OyS32nDIzwxztKe       ta", "sy5Lr");
 //	char **a = ft_split("AaBbCCcDDDdDDDeAAAfEA", "abcdef");
+	char **a = ft_split("LsLUoqPh7tZbnmRfRq3uhKMMnY6EEW6zAiXA", "");
 	for(int i = 0; i < 11111; i++)
 	{
 		if(a[i] == 0)
@@ -31,4 +33,4 @@ int main()
 		printf("[%s]\n", a[i]);
 	}
 }
-*/
+
