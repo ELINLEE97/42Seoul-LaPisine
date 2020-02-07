@@ -1,31 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert_base.c                                  :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/30 14:30:33 by jko               #+#    #+#             */
-/*   Updated: 2020/02/05 22:21:17 by jko              ###   ########.fr       */
+/*   Created: 2020/01/28 17:22:53 by jko               #+#    #+#             */
+/*   Updated: 2020/01/28 20:54:42 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdlib.h>
-#include <stdio.h>
-
-int			get_base_number(char c, char *base);
-void		compact(char *arr, int interval);
-void		init_arr(char *arr, int size);
-
-int			get_length(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
 
 int	is_valid(char *base)
 {
@@ -75,12 +58,35 @@ int	check_char(char c, char *base)
 	return (0);
 }
 
-int	base_to_int(char *str, char *base, int length)
+int	get_int(char c, char *base)
+{
+	int i;
+
+	i = 0;
+	while (base[i] != c)
+		i++;
+	return (i);
+}
+
+int	get_length(char *base)
+{
+	int i;
+
+	i = 0;
+	while (base[i] != '\0')
+		i++;
+	return (i);
+}
+
+int	ft_atoi_base(char *str, char *base)
 {
 	int index;
 	int count;
 	int result;
+	int length;
 
+	if (!is_valid(base))
+		return (0);
 	index = 0;
 	while (check_char(str[index], base) == 1)
 		index++;
@@ -93,48 +99,9 @@ int	base_to_int(char *str, char *base, int length)
 	}
 	if (check_char(str[index], base) != 2)
 		return (0);
-	result = get_base_number(str[index++], base);
+	result = get_int(str[index++], base);
 	length = get_length(base);
 	while (check_char(str[index], base) == 2)
-		result = result * length + get_base_number(str[index++], base);
+		result = result * length + get_int(str[index++], base);
 	return (count % 2 == 1 ? result * (-1) : result);
-}
-
-char		*int_to_base(long long nbr, char *base, int len)
-{
-	char	*result;
-	int		i;
-
-	result = (char *)malloc(sizeof(char) * 34);
-	result[33] = '\0';
-	if (nbr < 0)
-	{
-		result[0] = '-';
-		nbr = nbr * (-1);
-	}
-	i = 33;
-	while (nbr / len)
-	{
-		result[i] = base[nbr % len];
-		nbr /= len;
-		i--;
-	}
-	result[i] = base[nbr % len];
-	compact(result, i);
-	return (result);
-}
-
-char		*ft_convert_base(char *nbr, char *base_from, char *base_to)
-{
-	int			len_from;
-	int			len_to;
-	long long	temp;
-	char		*nbr_error;
-
-	len_from = get_length(base_from);
-	len_to = get_length(base_to);
-	if (!is_valid(base_from) || !is_valid(base_to))
-		return (0);
-	temp = base_to_int(nbr, base_from, len_from);
-	return (int_to_base(temp, base_to, len_to));
 }

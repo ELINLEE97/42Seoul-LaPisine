@@ -1,56 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert_base2.c                                 :+:      :+:    :+:   */
+/*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/30 15:33:07 by jko               #+#    #+#             */
-/*   Updated: 2020/02/05 21:34:12 by jko              ###   ########.fr       */
+/*   Created: 2020/02/06 13:24:26 by jko               #+#    #+#             */
+/*   Updated: 2020/02/06 13:30:10 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		get_base_number(char c, char *base)
+#include <stdlib.h>
+
+int	*ft_map(int *tab, int length, int (*f)(int))
 {
+	int *result;
 	int i;
 
+	result = (int *)malloc(sizeof(int) * length);
+	if (result == 0)
+		return (0);
 	i = 0;
-	while (base[i])
+	while (i < length)
 	{
-		if (base[i] == c)
-			return (i);
+		result[i] = f(tab[i]);
 		i++;
 	}
-	return (-1);
-}
-
-void	compact(char *arr, int interval)
-{
-	int i;
-
-	i = 0;
-	if (arr[0] == '-')
-	{
-		i++;
-		interval--;
-	}
-	while (i + interval < 34)
-	{
-		arr[i] = arr[i + interval];
-		i++;
-	}
-	while (i < 34)
-		arr[i++] = '\0';
-}
-
-void	init_arr(char *arr, int size)
-{
-	int i;
-
-	i = 0;
-	while (i < size)
-	{
-		arr[i] = 0;
-		i++;
-	}
+	return (result);
 }

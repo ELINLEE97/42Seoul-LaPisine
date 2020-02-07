@@ -1,56 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert_base2.c                                 :+:      :+:    :+:   */
+/*   ft_sort_string_tab.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/30 15:33:07 by jko               #+#    #+#             */
-/*   Updated: 2020/02/05 21:34:12 by jko              ###   ########.fr       */
+/*   Created: 2020/02/06 17:12:05 by jko               #+#    #+#             */
+/*   Updated: 2020/02/06 17:55:30 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		get_base_number(char c, char *base)
+int		str_cmp(char *s1, char *s2)
 {
 	int i;
 
 	i = 0;
-	while (base[i])
+	while (s1[i] && s2[i])
 	{
-		if (base[i] == c)
-			return (i);
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 		i++;
 	}
-	return (-1);
+	return (s1[i] - s2[i]);
 }
 
-void	compact(char *arr, int interval)
+void	str_swap(char **tab, int i, int j)
 {
-	int i;
+	char *temp;
 
-	i = 0;
-	if (arr[0] == '-')
-	{
-		i++;
-		interval--;
-	}
-	while (i + interval < 34)
-	{
-		arr[i] = arr[i + interval];
-		i++;
-	}
-	while (i < 34)
-		arr[i++] = '\0';
+	temp = tab[i];
+	tab[i] = tab[j];
+	tab[j] = temp;
 }
 
-void	init_arr(char *arr, int size)
+void	ft_sort_string_tab(char **tab)
 {
 	int i;
+	int j;
 
 	i = 0;
-	while (i < size)
+	while (tab[i])
 	{
-		arr[i] = 0;
+		j = i + 1;
+		while (tab[j])
+		{
+			if (str_cmp(tab[i], tab[j]) > 0)
+				str_swap(tab, i, j);
+			j++;
+		}
 		i++;
 	}
 }

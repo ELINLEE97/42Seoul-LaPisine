@@ -15,7 +15,7 @@ int main(void)
 		"AABBCCDDAABBCCDD"
 	};
 	char sep[] = "+";
-	char *result = ft_strjoin(2, strs, sep);	
+	char *result = ft_strjoin(0, strs, sep);	
 	printf("%p\n%s\n", result, result);
 
 	return 0;

@@ -7,13 +7,16 @@ int get_length(char *str);
 int main(void)
 {
 //	char nbr[] = "      -+---++-2147483647";
-	char nbr[] = "      -++-+2147483647";
+	char nbr[] = "      -++--+2147483648";
 	char base_from[] = "0123456789";
-	char base_to[] = "01";
-//	char base_to[] = "0123456789abcdef";
-	printf("%s\n%s\n%s\n%s\n", nbr, base_from, base_to, ft_convert_base(nbr, base_from, base_to));
+//	char base_to[] = "01";
+	char base_to[] = "0123456789abcdef";
+	printf("%s\n%s\n%s\n--------\n%s\n", nbr, base_from, base_to, ft_convert_base(nbr, base_from, base_to));
 
 	printf("is valid = %d\n", is_valid(base_from, get_length(base_from)));
 
+
+	char nbr1[] = "      ++--+10";
+	printf("%s\n%s\n%s\n--------\n%s\n", nbr1, base_from, base_to, ft_convert_base(nbr1, base_from, base_to));
 	return 0;
 }
