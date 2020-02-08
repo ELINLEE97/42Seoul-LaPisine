@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 14:02:30 by jko               #+#    #+#             */
-/*   Updated: 2020/02/08 21:26:12 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/08 21:42:36 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@
 
 int		main(int argc, char **argv)
 {
+
+	argc++;
+	printf("%s\n", argv[0]);
+
+
 	t_dict	**hash;
 	hash = (t_dict **)malloc(sizeof(t_dict *) * BIG_PRIME_NUM);
 	if (hash == 0)
