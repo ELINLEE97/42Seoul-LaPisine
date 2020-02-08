@@ -1,22 +1,29 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 char *ft_convert_base(char *nbr, char *base_from, char *base_to);
 int is_valid(char *base, int len);
 int get_length(char *str);
 
-int main(void)
+int main(int argc, char **argv)
 {
-//	char nbr[] = "      -+---++-2147483647";
-	char nbr[] = "      -++--+2147483648";
+	int t = argc;
+	t++;
+
 	char base_from[] = "0123456789";
 //	char base_to[] = "01";
 	char base_to[] = "0123456789abcdef";
-	printf("%s\n%s\n%s\n--------\n%s\n", nbr, base_from, base_to, ft_convert_base(nbr, base_from, base_to));
+	printf("from=%s\nto=%s\n", base_from, base_to);
 
-	printf("is valid = %d\n", is_valid(base_from, get_length(base_from)));
-
+	printf("%s\n%s\n", argv[1], ft_convert_base(argv[1], base_from, base_to));
+/*
+//	char nbr[] = "      -+---++-2147483647";
+	char nbr[] = "   -++--+2147483648";
+	printf("%s\n%s\n--------\n", nbr, ft_convert_base(nbr, base_from, base_to));
 
 	char nbr1[] = "      ++--+10";
-	printf("%s\n%s\n%s\n--------\n%s\n", nbr1, base_from, base_to, ft_convert_base(nbr1, base_from, base_to));
+	printf("%s\n%s\n--------\n", nbr1, ft_convert_base(nbr1, base_from, base_to));
+*/
+
 	return 0;
 }
