@@ -5,7 +5,7 @@ NAME = rush-02
 
 SRC_DIR = ./srcs/
 SRCS = ft_main.c \
-	   parser.c \
+	   dict_parser.c \
 	   dict.c \
 	   dict_list.c \
 	   hash.c \

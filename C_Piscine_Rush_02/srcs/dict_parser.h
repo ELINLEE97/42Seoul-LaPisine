@@ -6,12 +6,12 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 20:13:47 by jko               #+#    #+#             */
-/*   Updated: 2020/02/08 20:18:01 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/08 22:07:03 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef DICT_PARSER_H
+# define DICT_PARSER_H
 
 int		get_len_space_end(char *str, int start);
 int		get_len_newline_end(char *str, int start);

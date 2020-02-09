@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 14:02:30 by jko               #+#    #+#             */
-/*   Updated: 2020/02/08 21:42:36 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/08 22:07:12 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "dict.h"
 #include "ft_string.h"
-#include "parser.h"
+#include "dict_parser.h"
 #include "dict.h"
 #include "hash.h"
 
