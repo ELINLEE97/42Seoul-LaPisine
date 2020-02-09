@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.h                                             :+:      :+:    :+:   */
+/*   read_file.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/08 21:22:02 by jko               #+#    #+#             */
-/*   Updated: 2020/02/09 14:58:48 by jko              ###   ########.fr       */
+/*   Created: 2020/02/09 14:48:14 by jko               #+#    #+#             */
+/*   Updated: 2020/02/09 14:49:24 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HASH_H
-# define HASH_H
+#ifndef READ_FILE_H
+# define READ_FILE_H
 
-# define BIG_PRIME_NUM 4999
-
-int		get_hash_index(char *str);
-t_dict	**init_hash(void);
-t_dict	*put_dict(t_dict **hash, t_dict *new_dict);
-t_dict	*get_dict(t_dict **hash, char *key);
-void	free_hash(t_dict **hash);
+int		get_line_num(char *file_name);
+int		get_next_line_length(int fd);
+char	*get_next_line(int fd, int length);
+char	**read_lines(int fd1, int fd2, int line_num, char **result);
+char	**read_dict_file(char *file_name);
 
 #endif

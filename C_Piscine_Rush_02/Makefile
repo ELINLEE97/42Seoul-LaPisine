@@ -9,7 +9,9 @@ SRCS = ft_main.c \
 	   dict.c \
 	   dict_list.c \
 	   hash.c \
-	   ft_string.c
+	   ft_string.c \
+	   read_file.c \
+	   file_to_hash.c
 OBJS = $(addprefix $(SRC_DIR), $(SRCS:.c=.o))
 
 

@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 20:56:48 by jko               #+#    #+#             */
-/*   Updated: 2020/02/08 21:27:59 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/09 14:58:46 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,21 @@ int		get_hash_index(char *str)
 	return (result);
 }
 
-void	init_hash(t_dict **hash)
+t_dict	**init_hash(void)
 {
-	int i;
+	t_dict	**hash;
+	int		i;
 
+	hash = (t_dict **)malloc(sizeof(t_dict *) * BIG_PRIME_NUM);
+	if (hash == 0)
+		return (0);
 	i = 0;
 	while (i < BIG_PRIME_NUM)
 	{
 		hash[i] = 0;
 		i++;
 	}
+	return (hash);
 }
 
 t_dict	*put_dict(t_dict **hash, t_dict *new_dict)

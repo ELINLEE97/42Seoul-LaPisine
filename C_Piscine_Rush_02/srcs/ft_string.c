@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 19:52:24 by jko               #+#    #+#             */
-/*   Updated: 2020/02/08 21:28:44 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/09 15:52:03 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,17 @@ void	free_strs(char **strs, int size)
 	int i;
 
 	i = 0;
-	while (i < size)
-	{
-		free(strs[i]);
-		i++;
-	}
+	if (size < 0)
+		while (strs[i])
+		{
+			free(strs[i]);
+			i++;
+		}
+	else
+		while (i < size)
+		{
+			free(strs[i]);
+			i++;
+		}
 	free(strs);
 }
