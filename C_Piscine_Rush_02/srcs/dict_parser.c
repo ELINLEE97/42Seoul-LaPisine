@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 20:12:13 by jko               #+#    #+#             */
-/*   Updated: 2020/02/08 21:29:16 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/09 20:51:28 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ int		get_len_space_end(char *str, int start)
 	len = 0;
 	while (str[start + len]
 			&& str[start + len] != ' ' && str[start + len] != ':')
+	{
+		if (str[start + len] < '0' || str[start + len] > '9')
+			return (-1);
 		len++;
+	}
 	return (len);
 }
 

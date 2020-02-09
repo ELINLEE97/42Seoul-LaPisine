@@ -6,13 +6,22 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 20:57:28 by jko               #+#    #+#             */
-/*   Updated: 2020/02/08 21:18:57 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/09 21:31:24 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ft_string.h"
 #include "dict.h"
+
+t_dict	*change_dict_value(t_dict *dict, t_dict *new_dict)
+{
+	free(dict->value);
+	dict->value = new_dict->value;
+	free(new_dict->key);
+	free(new_dict);
+	return (dict);
+}
 
 t_dict	*add_dict_list(t_dict *head, t_dict *new_dict)
 {
@@ -24,7 +33,7 @@ t_dict	*add_dict_list(t_dict *head, t_dict *new_dict)
 	while (curr->next)
 		curr = curr->next;
 	curr->next = new_dict;
-	return (head);
+	return (new_dict);
 }
 
 t_dict	*find_dict_in_list(t_dict *head, char *key)
@@ -59,5 +68,4 @@ void	free_dict_list(t_dict *head)
 		curr = curr->next;
 		free_dict(temp);
 	}
-	free(head);
 }

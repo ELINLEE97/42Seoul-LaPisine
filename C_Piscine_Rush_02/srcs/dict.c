@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 20:28:04 by jko               #+#    #+#             */
-/*   Updated: 2020/02/08 20:42:12 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/09 19:58:06 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_dict	*make_dict(char *key, char *value)
 {
 	t_dict	*new_dict;
 
+	if (key == 0 || value == 0)
+		return (0);
 	new_dict = (t_dict *)malloc(sizeof(t_dict));
 	if (new_dict == 0)
 		return (0);

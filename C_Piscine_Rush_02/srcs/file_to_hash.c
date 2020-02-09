@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 14:53:03 by jko               #+#    #+#             */
-/*   Updated: 2020/02/09 17:19:09 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/09 20:15:43 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,35 @@
 #include "ft_string.h"
 #include "file_to_hash.h"
 
+char	is_empty_line(char *str)
+{
+	if (str[0] && str[0] != '\n')
+		return (0);
+	return (1);
+}
+
 int		parse_and_put_dict(t_dict **hash, char **lines)
 {
 	t_dict	*new_dict;
 	char	**key_and_value;
 	int		i;
 
-	i = 0;
-	while (lines[i])
+	i = -1;
+	while (lines[++i])
 	{
+		if (is_empty_line(lines[i]))
+			continue ;
 		key_and_value = parse_line(lines[i]);
 		if (key_and_value == 0)
 			return (0);
 		new_dict = make_dict(key_and_value[0], key_and_value[1]);
-		if (new_dict == 0)
+		if (new_dict == 0 || put_dict(hash, new_dict) == 0)
 		{
 			free_strs(key_and_value, 2);
+			if (new_dict != 0)
+				free_dict(new_dict);
 			return (0);
 		}
-		if (put_dict(hash, new_dict) == 0)
-		{
-			free_strs(key_and_value, 2);
-			free_dict(new_dict);
-			return (0);
-		}
-		i++;
 	}
 	return (1);
 }

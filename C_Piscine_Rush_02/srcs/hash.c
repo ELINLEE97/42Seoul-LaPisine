@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 20:56:48 by jko               #+#    #+#             */
-/*   Updated: 2020/02/09 14:58:46 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/09 21:23:22 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ t_dict	**init_hash(void)
 
 t_dict	*put_dict(t_dict **hash, t_dict *new_dict)
 {
-	int	hash_index;
+	int		hash_index;
+	t_dict	*curr;
 
 	hash_index = get_hash_index(new_dict->key);
 	if (hash_index == -1)
@@ -63,6 +64,8 @@ t_dict	*put_dict(t_dict **hash, t_dict *new_dict)
 		hash[hash_index] = new_dict;
 		return (new_dict);
 	}
+	if ((curr = find_dict_in_list(hash[hash_index], new_dict->key)))
+		return (change_dict_value(curr, new_dict));
 	return (add_dict_list(hash[hash_index], new_dict));
 }
 

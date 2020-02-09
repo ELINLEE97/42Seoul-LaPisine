@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: jushin <jushin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 14:02:30 by jko               #+#    #+#             */
-/*   Updated: 2020/02/09 18:21:08 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/09 21:31:37 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,30 @@
 #include "hash.h"
 #include "file_to_hash.h"
 #include "input_validation.h"
+#include "find.h"
 
-
-#include <stdio.h>
 char	program(char *file_name, char *key)
 {
+	t_dict	**hash;
+	int		result;
+
 	if (!is_valid(key))
 	{
 		write(2, "Error\n", 6);
 		return (-1);
 	}
-	t_dict **hash = read_file_and_make_hash(file_name);
+	hash = read_file_and_make_hash(file_name);
 	if (hash == 0)
 	{
 		write(2, "Dict Error\n", 11);
 		return (-1);
 	}
-
-	// 찾고 출력
-	t_dict *result;
-	result = get_dict(hash, "100");
-	if (result == 0)
-		printf("fail\n");
-	else
-		printf("success, %s, %s\n", result->key, result->value);
-
-
+	result = find_num(hash, key);
+	if (result == -1)
+	{
+		write(1, "Dict Error\n", 11);
+		return (-1);
+	}
 	free_hash(hash);
 	return (0);
 }

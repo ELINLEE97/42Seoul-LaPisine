@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dict_list.h                                        :+:      :+:    :+:   */
+/*   ft_string2.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: jushin <jushin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/08 20:58:14 by jko               #+#    #+#             */
-/*   Updated: 2020/02/08 21:21:53 by jko              ###   ########.fr       */
+/*   Created: 2020/02/09 20:33:59 by jushin            #+#    #+#             */
+/*   Updated: 2020/02/09 20:35:00 by jushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DICT_LIST_H
-# define DICT_LIST_H
+#ifndef FT_STRING2_H
+# define FT_STRING2_H
 
-t_dict	*add_dict_list(t_dict *head, t_dict *new_dict);
-t_dict	*find_dict_in_list(t_dict *head, char *key);
-void	free_dict_list(t_dict *head);
+char	*ft_strncpy(char *dest, char *src, unsigned int n);
+int		ft_strlen(char *str);
 
 #endif

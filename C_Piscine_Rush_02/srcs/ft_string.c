@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 19:52:24 by jko               #+#    #+#             */
-/*   Updated: 2020/02/09 15:52:03 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/09 20:35:25 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*ft_strdup(char *str, int start, int len)
 	char	*result;
 	int		i;
 
+	if (len <= 0)
+		return (0);
 	result = (char *)malloc(sizeof(char) * (len + 1));
 	if (result == 0)
 		return (0);
