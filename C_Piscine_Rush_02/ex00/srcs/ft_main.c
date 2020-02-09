@@ -6,7 +6,7 @@
 /*   By: jushin <jushin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 14:02:30 by jko               #+#    #+#             */
-/*   Updated: 2020/02/09 21:31:37 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/09 22:34:42 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "file_to_hash.h"
 #include "input_validation.h"
 #include "find.h"
+#include "print_entry.h"
 
 char	program(char *file_name, char *key)
 {
@@ -49,7 +50,7 @@ char	check_args(int argc)
 {
 	if (argc == 1)
 	{
-		write(1, "Life is 42!\n", 12);
+		print_entry(DICT_FILE);
 		return (-1);
 	}
 	else if (argc > 3)

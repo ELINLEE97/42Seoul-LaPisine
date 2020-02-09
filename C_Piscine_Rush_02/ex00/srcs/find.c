@@ -6,7 +6,7 @@
 /*   By: jushin <jushin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 14:10:17 by jushin            #+#    #+#             */
-/*   Updated: 2020/02/09 21:15:43 by jushin           ###   ########.fr       */
+/*   Updated: 2020/02/09 22:03:43 by jushin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include "ft_string.h"
 #include "ft_string2.h"
 #include "find_util.h"
+
+/*
+** function 'unit1' print first digit
+*/
 
 void	unit1(t_dict **hash, char c, int row)
 {
@@ -32,22 +36,26 @@ void	unit1(t_dict **hash, char c, int row)
 	}
 }
 
-void	unit2(t_dict **hash, char *unit_str, int col_len)
+/*
+** function 'unit2' print second digit
+*/
+
+void	unit2(t_dict **hash, char *unit_str, int col_len, int idx)
 {
 	char	tmp[3];
 
 	tmp[2] = '\0';
-	if (unit_str[1] == '1')
+	if (unit_str[idx] == '1')
 	{
 		if (col_len != 2)
 			write(1, " ", 1);
-		find_in_dict(hash, &unit_str[1]);
+		find_in_dict(hash, &unit_str[idx]);
 	}
 	else
 	{
-		tmp[0] = unit_str[1];
+		tmp[0] = unit_str[idx];
 		tmp[1] = '0';
-		if (unit_str[1] != '0')
+		if (unit_str[idx] != '0')
 		{
 			if (col_len != 2)
 				write(1, " ", 1);
@@ -55,6 +63,11 @@ void	unit2(t_dict **hash, char *unit_str, int col_len)
 		}
 	}
 }
+
+/*
+** function 'print_unit' print by unit
+** unit is organized 3 digit
+*/
 
 void	print_unit(t_dict **hash, char *unit_str, int row, int col_len)
 {
@@ -68,7 +81,7 @@ void	print_unit(t_dict **hash, char *unit_str, int row, int col_len)
 	}
 	if (col_len - idx == 2)
 	{
-		unit2(hash, unit_str, col_len);
+		unit2(hash, unit_str, col_len, idx);
 		if (unit_str[idx] != '1')
 			idx++;
 	}
@@ -79,6 +92,10 @@ void	print_unit(t_dict **hash, char *unit_str, int row, int col_len)
 		find_in_dict(hash, &unit_str[idx]);
 	}
 }
+
+/*
+** function 'ft_print' print split_num by unit
+*/
 
 void	ft_print(t_dict **hash, char **split_num, int size)
 {
@@ -99,6 +116,10 @@ void	ft_print(t_dict **hash, char **split_num, int size)
 		row++;
 	}
 }
+
+/*
+** function 'find_num' find str from hash
+*/
 
 int		find_num(t_dict **hash, char *to_find)
 {
