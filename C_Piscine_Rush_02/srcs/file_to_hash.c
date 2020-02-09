@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 14:53:03 by jko               #+#    #+#             */
-/*   Updated: 2020/02/09 16:13:21 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/09 17:19:09 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "read_file.h"
 #include "dict_parser.h"
 #include "ft_string.h"
+#include "file_to_hash.h"
 
 int		parse_and_put_dict(t_dict **hash, char **lines)
 {
@@ -69,7 +70,7 @@ t_dict	**read_file_and_make_hash(char *file_name)
 	return (hash);
 }
 
-t_dict **change_dict_file(char *file_name, t_dict **hash)
+t_dict	**change_dict_file(char *file_name, t_dict **hash)
 {
 	free_hash(hash);
 	return (read_file_and_make_hash(file_name));

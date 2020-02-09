@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 12:42:35 by jko               #+#    #+#             */
-/*   Updated: 2020/02/05 15:55:06 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/09 13:36:11 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,20 @@ int		str_cat(char *dest, int index, char *src)
 	return (index + i);
 }
 
-char	*ft_strjoin(int size, char **strs, char *sep)
+char	*make_blank_str(void)
+{
+	char *result;
+
+	result = (char *)malloc(sizeof(char) * 1);
+	result[0] = 0;
+	return (result);
+}
+
+void	cat_strs(char **strs, char *sep, char *result, int size)
 {
 	int		i;
 	int		j;
-	int		length;
-	char	*result;
 
-	if (size == 0)
-	{
-		result = (char *)malloc(sizeof(char) * 1);
-		result[0] = 0;
-		return (result);
-	}
-	length = get_length(sep) * (size - 1);
-	i = 0;
-	while (i < size)
-		length += get_length(strs[i++]);
-	result = (char *)malloc(sizeof(char) * (length + 1));
 	i = 0;
 	j = 0;
 	while (i < size)
@@ -63,5 +59,24 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 		i++;
 	}
 	result[j] = '\0';
+}
+
+char	*ft_strjoin(int size, char **strs, char *sep)
+{
+	int		i;
+	int		length;
+	char	*result;
+
+	if (size == 0)
+	{
+		result = make_blank_str();
+		return (result);
+	}
+	length = get_length(sep) * (size - 1);
+	i = 0;
+	while (i < size)
+		length += get_length(strs[i++]);
+	result = (char *)malloc(sizeof(char) * (length + 1));
+	cat_strs(strs, sep, result, size);
 	return (result);
 }

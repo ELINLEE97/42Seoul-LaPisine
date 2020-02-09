@@ -11,7 +11,8 @@ SRCS = ft_main.c \
 	   hash.c \
 	   ft_string.c \
 	   read_file.c \
-	   file_to_hash.c
+	   file_to_hash.c \
+	   input_validation.c
 OBJS = $(addprefix $(SRC_DIR), $(SRCS:.c=.o))
 
 

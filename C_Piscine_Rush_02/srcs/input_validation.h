@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_to_hash.h                                     :+:      :+:    :+:   */
+/*   input_validation.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/09 15:56:45 by jko               #+#    #+#             */
-/*   Updated: 2020/02/09 18:18:23 by jko              ###   ########.fr       */
+/*   Created: 2020/02/09 17:44:46 by jko               #+#    #+#             */
+/*   Updated: 2020/02/09 18:11:54 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILE_TO_HASH_H
-# define FILE_TO_HASH_H
+#ifndef INPUT_VALIDATION_H
+# define INPUT_VALIDATION_H
 
-# include "dict.h"
-
-# define DICT_FILE "numbers.dict"
-
-int		parse_and_put_dict(t_dict **hash, char **lines);
-t_dict	**read_file_and_make_hash(char *file_name);
-t_dict	**change_dict_file(char *file_name, t_dict **hash);
+char	is_number_str(char *str);
+int		get_len(char *str);
+char	is_valid(char *str);
 
 #endif

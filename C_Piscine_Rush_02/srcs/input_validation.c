@@ -1,24 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_to_hash.h                                     :+:      :+:    :+:   */
+/*   input_validation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/09 15:56:45 by jko               #+#    #+#             */
-/*   Updated: 2020/02/09 18:18:23 by jko              ###   ########.fr       */
+/*   Created: 2020/02/09 17:10:56 by jko               #+#    #+#             */
+/*   Updated: 2020/02/09 18:14:51 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILE_TO_HASH_H
-# define FILE_TO_HASH_H
+#include "file_to_hash.h"
+#include "ft_string.h"
 
-# include "dict.h"
+char	is_number_str(char *str)
+{
+	int i;
 
-# define DICT_FILE "numbers.dict"
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
-int		parse_and_put_dict(t_dict **hash, char **lines);
-t_dict	**read_file_and_make_hash(char *file_name);
-t_dict	**change_dict_file(char *file_name, t_dict **hash);
+int		get_len(char *str)
+{
+	int len;
 
-#endif
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
+
+char	is_valid(char *str)
+{
+	if (!is_number_str(str))
+		return (0);
+	return (1);
+}

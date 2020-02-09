@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 12:35:54 by jko               #+#    #+#             */
-/*   Updated: 2020/02/09 14:48:49 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/09 16:59:48 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		get_line_num(char *file_name)
 	char	buf[1];
 
 	fd = open(file_name, O_RDONLY);
-	if (fd == 0)
+	if (fd < 0)
 		return (-1);
 	len = 0;
 	while ((n = read(fd, buf, 1)))
@@ -99,20 +99,20 @@ char	**read_dict_file(char *file_name)
 	int		line_num;
 	char	**result;
 
-	fd1 = open(file_name, O_RDONLY);
-	fd2 = open(file_name, O_RDONLY);
-	if (fd1 == 0 || fd2 == 0)
-	{
-		close(fd1);
-		close(fd2);
-		return (0);
-	}
 	line_num = get_line_num(file_name);
 	if (line_num < 0)
 		return (0);
 	result = (char **)malloc(sizeof(char *) * (line_num + 1));
 	if (result == 0)
 		return (0);
+	fd1 = open(file_name, O_RDONLY);
+	fd2 = open(file_name, O_RDONLY);
+	if (fd1 < 0 || fd2 < 0)
+	{
+		close(fd1);
+		close(fd2);
+		return (0);
+	}
 	if (read_lines(fd1, fd2, line_num, result) == 0)
 		free(result);
 	close(fd1);
