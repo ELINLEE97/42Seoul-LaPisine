@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:00:01 by jko               #+#    #+#             */
-/*   Updated: 2020/02/10 19:02:35 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/10 21:12:06 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,14 @@ void	free_strs(char **strs, int size)
 			free(strs[i++]);
 	}
 	free(strs);
+}
+
+int		ft_strlen(char *str)
+{
+	int len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }

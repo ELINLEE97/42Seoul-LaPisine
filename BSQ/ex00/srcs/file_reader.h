@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.h                                        :+:      :+:    :+:   */
+/*   file_reader.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/09 14:48:14 by jko               #+#    #+#             */
-/*   Updated: 2020/02/10 17:48:39 by jko              ###   ########.fr       */
+/*   Created: 2020/02/10 22:25:27 by jko               #+#    #+#             */
+/*   Updated: 2020/02/10 22:25:47 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READ_FILE_H
-# define READ_FILE_H
+#ifndef FILE_READER_H
+# define FILE_READER_H
 
 int		get_line_num(char *file_name);
 int		get_next_line_length(int fd);

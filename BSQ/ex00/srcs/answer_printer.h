@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_string.h                                        :+:      :+:    :+:   */
+/*   answer_printer.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: mihykim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/10 19:03:05 by jko               #+#    #+#             */
-/*   Updated: 2020/02/10 21:15:18 by jko              ###   ########.fr       */
+/*   Created: 2020/02/10 22:45:04 by mihykim           #+#    #+#             */
+/*   Updated: 2020/02/10 22:49:46 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STRING_H
-# define FT_STRING_H
+#ifndef ANSWER_PRINTER_H
+# define ANSWER_PRINTER_H
 
-void	free_strs(char **strs, int size);
-int		ft_strlen(char *str);
+void	mark_largest_square(t_map_info *info, t_answer *ans);
+void	print_answer(t_map_info *info);
 
 #endif
