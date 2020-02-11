@@ -9,6 +9,7 @@ SRCS = ft_main.c \
 	   map_validation.c \
 	   largest_square_finder.c \
 	   answer_printer.c \
+	   stdin_reader.c \
 	   ft_atoi.c
 OBJS = $(addprefix $(SRC_DIR), $(SRCS:.c=.o))
 

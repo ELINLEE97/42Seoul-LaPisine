@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:00:01 by jko               #+#    #+#             */
-/*   Updated: 2020/02/10 21:12:06 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/11 15:47:41 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,33 @@ int		ft_strlen(char *str)
 	while (str[len])
 		len++;
 	return (len);
+}
+
+char	*ft_strdup_and_strcat(char *str, char *src, int size)
+{
+	char	*result;
+	int		str_len;
+	int		src_len;
+	int		i;
+
+	str_len = 0;
+	while (str && str[str_len])
+		str_len++;
+	src_len = 0;
+	while (src[src_len] && src[src_len] != '\n' && src_len < size)
+		src_len++;
+	if ((result = (char *)malloc(sizeof(char) * (str_len + src_len + 1))) == 0)
+		return (0);
+	i = -1;
+	while (str && str[++i])
+		result[i] = str[i];
+	i = 0;
+	while (src[i] && src[i] != '\n' && i < size)
+	{
+		result[str_len + i] = src[i];
+		i++;
+	}
+	result[str_len + i] = 0;
+	free(str);
+	return (result);
 }

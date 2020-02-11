@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 22:26:49 by jko               #+#    #+#             */
-/*   Updated: 2020/02/10 23:14:18 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/11 17:35:20 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ t_map_info		*read_map(char *file_name)
 	if ((lines = read_file(file_name)) == 0)
 		return (0);
 	if ((map_info = parse_map_info(lines[0])) == 0)
+	{
+		free_strs(lines, 0);
 		return (0);
+	}
 	if ((map_info->map = get_map(lines + 1)) == 0)
 	{
 		free_map_info(map_info);

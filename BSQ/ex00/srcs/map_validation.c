@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:08:39 by jko               #+#    #+#             */
-/*   Updated: 2020/02/10 22:56:30 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/11 16:06:57 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ char	check_len(char **map, int line_num)
 	if (len < 1)
 		return (0);
 	i = 1;
-	while (map[i])
+	while (map[i] && i < line_num)
 	{
 		if (len != ft_strlen(map[i]))
 			return (0);
 		i++;
 	}
+	if (i != line_num)
+		return (0);
 	return (1);
 }
 
@@ -54,8 +56,6 @@ char	is_map_char(t_map_info *info, char c)
 		return (1);
 	if (info->obs == c)
 		return (1);
-	if (info->mark == c)
-		return (1);
 	return (0);
 }
 
@@ -65,7 +65,7 @@ char	check_only_chars(t_map_info *info)
 	int j;
 
 	i = 0;
-	while ((info->map)[i])
+	while ((info->map)[i] && i < info->line_num)
 	{
 		j = 0;
 		while ((info->map)[i][j])
