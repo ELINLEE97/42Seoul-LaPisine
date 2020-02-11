@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 12:50:00 by jko               #+#    #+#             */
-/*   Updated: 2020/02/11 18:24:55 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/11 21:27:41 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char		*read_line_from_stdin(void)
 
 	result = 0;
 	len = 0;
-	while ((len = read(0, buf, 10)))
+	while ((len = read(0, buf, 50)))
 	{
 		result = ft_strdup_and_strcat(result, buf, len);
 		if (buf[len - 1] == '\n')
