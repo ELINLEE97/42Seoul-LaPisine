@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 12:11:13 by jko               #+#    #+#             */
-/*   Updated: 2020/02/11 20:07:50 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/12 23:00:13 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	solve(t_map_info *map_info)
 	if (!is_valid_map(map_info))
 	{
 		write(1, "map error\n", 10);
-		return (0);
+		return (1);
 	}
 	if ((answer = find_largest_square(map_info)) == 0)
 		return (-1);
@@ -45,8 +45,11 @@ char	read_and_solve(char *file_name)
 	else
 		func = &read_map;
 	if ((map_info = func(file_name)) == 0)
+	{
+		write(2, "map error\n", 10);
 		return (-1);
-	if (solve(map_info) != 0)
+	}
+	if (solve(map_info) < 0)
 	{
 		free_map_info(map_info);
 		return (-1);

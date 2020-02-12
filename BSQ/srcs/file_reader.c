@@ -6,7 +6,7 @@
 /*   By: jko <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 22:25:10 by jko               #+#    #+#             */
-/*   Updated: 2020/02/10 22:25:17 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/12 18:42:00 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		get_next_line_length(int fd)
 	int		len;
 	char	buf[1];
 
-	if (fd == 0)
+	if (fd < 0)
 		return (0);
 	len = 0;
 	while (read(fd, buf, 1))
@@ -55,7 +55,7 @@ char	*get_next_line(int fd, int length)
 {
 	char	*result;
 
-	if (fd == 0 || length <= 0)
+	if (fd < 0 || length <= 0)
 		return (0);
 	result = (char *)malloc(sizeof(char) * length);
 	if (result == 0)

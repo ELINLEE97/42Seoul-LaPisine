@@ -6,7 +6,7 @@
 /*   By: mihykim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 22:42:41 by mihykim           #+#    #+#             */
-/*   Updated: 2020/02/11 20:07:24 by jko              ###   ########.fr       */
+/*   Updated: 2020/02/12 20:45:48 by jko              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int			get_value(int **note, t_map_info *info, int r, int c)
 		else
 		{
 			tmp = (note[r][c - 1] < note[r - 1][c]) ?
-				note[r][c - 1] + 1 : note[r - 1][c] + 1;
-			val = (note[r - 1][c - 1] < tmp) ? note[r - 1][c - 1] + 1 : tmp;
+				note[r][c - 1] : note[r - 1][c];
+			val = (note[r - 1][c - 1] < tmp) ? note[r - 1][c - 1] + 1 : tmp + 1;
 		}
 	}
 	return (val);

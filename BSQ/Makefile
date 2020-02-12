@@ -1,6 +1,8 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
+INCS = -I ./includes/
+
 SRC_DIR = ./srcs/
 SRCS = ft_main.c \
 	   ft_string.c \
@@ -10,13 +12,14 @@ SRCS = ft_main.c \
 	   largest_square_finder.c \
 	   answer_printer.c \
 	   stdin_reader.c \
+	   ft_split.c \
 	   ft_atoi.c
 OBJS = $(addprefix $(SRC_DIR), $(SRCS:.c=.o))
 
 NAME = bsq
 
 .c.o :
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $< $(INCS)
 
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
