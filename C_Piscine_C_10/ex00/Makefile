@@ -10,7 +10,7 @@ $(TARGET) : $(OBJS)
 
 all : $(TARGET)
 
-.c.o :
+%.o : %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean :
@@ -20,3 +20,5 @@ fclean : clean
 	rm -f $(TARGET)
 
 re : fclean all
+
+.PHONY : all clean fclean re
